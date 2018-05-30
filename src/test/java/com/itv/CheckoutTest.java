@@ -14,7 +14,7 @@ public class CheckoutTest {
     private static final MultibuyOffer BUY_ONE_GET_SECOND_HALF_PRICE =
             new MultibuyOffer(2, 50);
 
-    private static final int IS_EQUAL = 0;
+    private static final int IS_EQUAL = 0; // Used for BigDecimal compareTo method
 
     @Test
     public void testCheckoutTotalsWithSingleItemNoReductionsApply() {
