@@ -21,6 +21,9 @@ public class Checkout {
     }
 
     public int getTotalItemsInCheckout() {
-        return 0;
+        return checkoutItems
+                .values()
+                .stream()
+                .reduce(0, Integer::sum);
     }
 }
