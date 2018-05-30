@@ -2,17 +2,19 @@ package com.itv;
 
 import java.math.BigDecimal;
 import java.util.HashMap;
+import java.util.Map;
+import java.util.Map.Entry;
 
 public class Checkout {
 
     // item -> quantity
-    private HashMap<Item, Integer> checkoutItems = new HashMap<>();
+    private Map<Item, Integer> checkoutItems = new HashMap<>();
 
     public void scanItem(Item item) {
         checkoutItems.merge(item, 1, (a, b) -> a + b);
     }
 
-    public HashMap<Item, Integer> getCheckoutItems() {
+    public Map<Item, Integer> getCheckoutItems() {
         return checkoutItems;
     }
 
