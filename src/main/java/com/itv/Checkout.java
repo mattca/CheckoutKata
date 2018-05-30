@@ -19,8 +19,13 @@ public class Checkout {
 
     public Totals calculateTotals() {
         BigDecimal reductions = BigDecimal.ZERO;
+        BigDecimal subTotal = BigDecimal.ZERO;
 
-        return new Totals(checkoutItems.entrySet().stream().findFirst().get().getKey().getPrice(), reductions);
+        if (checkoutItems.size() == 1) {
+            return new Totals(checkoutItems.entrySet().stream().findFirst().get().getKey().getPrice(), reductions);
+        }
+
+        return new Totals(subTotal, reductions);
     }
 
     public int getTotalItemsInCheckout() {

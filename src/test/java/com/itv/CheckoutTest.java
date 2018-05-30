@@ -31,4 +31,18 @@ public class CheckoutTest {
         assertEquals(IS_EQUAL, BigDecimal.valueOf(0.5).compareTo(totals.getSubTotal()));
         assertEquals(IS_EQUAL, BigDecimal.valueOf(0.5).compareTo(totals.getTotal()));
     }
+
+    @Test
+    public void testCheckoutTotalIsZeroWithNoItems() {
+        // given
+        Checkout checkout = new Checkout();
+
+        // when
+        Totals totals = checkout.calculateTotals();
+
+        // then
+        assertEquals(IS_EQUAL, BigDecimal.ZERO.compareTo(totals.getReductions()));
+        assertEquals(IS_EQUAL, BigDecimal.ZERO.compareTo(totals.getSubTotal()));
+        assertEquals(IS_EQUAL, BigDecimal.ZERO.compareTo(totals.getTotal()));
+    }
 }
