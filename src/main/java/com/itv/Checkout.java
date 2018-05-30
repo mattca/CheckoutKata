@@ -7,7 +7,7 @@ import java.util.Map.Entry;
 
 public class Checkout {
 
-    // item -> quantity
+    // Map to represent items to checkout. Item -> Quantity of Item
     private Map<Item, Integer> checkoutItems = new HashMap<>();
 
     public void scanItem(Item item) {
