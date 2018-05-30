@@ -3,6 +3,7 @@ package com.itv;
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
 
 public class Checkout {
 
@@ -21,8 +22,11 @@ public class Checkout {
         BigDecimal reductions = BigDecimal.ZERO;
         BigDecimal subTotal = BigDecimal.ZERO;
 
-        if (checkoutItems.size() == 1) {
-            return new Totals(checkoutItems.entrySet().stream().findFirst().get().getKey().getPrice(), reductions);
+        for (Entry<Item, Integer> itemAndQuantity : checkoutItems.entrySet()) {
+            Item item = itemAndQuantity.getKey();
+            int quantity = itemAndQuantity.getValue();
+
+            subTotal = subTotal.add(item.getPrice().multiply(new BigDecimal(quantity)));
         }
 
         return new Totals(subTotal, reductions);
