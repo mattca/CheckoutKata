@@ -52,4 +52,13 @@ public class Item {
     public int hashCode() {
         return Objects.hash(sku);
     }
+
+    @Override
+    public String toString() {
+        return "Item{" +
+                "sku='" + sku + '\'' +
+                ", price=" + price +
+                ", multibuyOffer=" + multibuyOffer +
+                '}';
+    }
 }

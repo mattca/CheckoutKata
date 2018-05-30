@@ -26,7 +26,18 @@ public class Checkout {
             Item item = itemAndQuantity.getKey();
             int quantity = itemAndQuantity.getValue();
 
+            int itemsEligibleForDiscount = 0;
+            BigDecimal percentOffMultiplier = BigDecimal.ONE;
+            if (item.getMultibuyOffer() != null) {
+                itemsEligibleForDiscount = quantity / item.getMultibuyOffer().getQuantityToEnableReduction();
+                percentOffMultiplier = BigDecimal.valueOf((double) item.getMultibuyOffer().getReducedItemPercentOff() / 100);
+            }
+
             subTotal = subTotal.add(item.getPrice().multiply(new BigDecimal(quantity)));
+            reductions = reductions.add(
+                    item.getPrice()
+                            .multiply(percentOffMultiplier)
+                            .multiply(BigDecimal.valueOf(itemsEligibleForDiscount)));
         }
 
         return new Totals(subTotal, reductions);
