@@ -19,6 +19,9 @@ public class Offers {
      * @param multibuyOffer Offer to relate to the item
      */
     public void registerOffer(Item item, MultibuyOffer multibuyOffer) {
+        if (item == null || multibuyOffer == null) {
+            throw new IllegalArgumentException("Item or Multibuy offer must not be null");
+        }
         offers.put(item, multibuyOffer);
     }
 

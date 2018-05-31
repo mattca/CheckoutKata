@@ -1,6 +1,8 @@
 package com.checkout;
 
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 import java.math.BigDecimal;
 
@@ -13,6 +15,35 @@ public class OffersTest {
 
     private static final MultibuyOffer BUY_TWO_GET_SECOND_HALF_PRICE =
             new MultibuyOffer(2, 50);
+
+    @Rule
+    public final ExpectedException exception = ExpectedException.none();
+
+    @Test
+    public void checkIllegalArgumentExceptionThrownWhenPassingNullItemWhenRegisteringOffer() {
+        // given
+        exception.expect(IllegalArgumentException.class);
+        Offers offers = new Offers();
+
+        // when
+        offers.registerOffer(null, new MultibuyOffer(2, 50));
+
+        // then
+        // exception is thrown
+    }
+
+    @Test
+    public void checkIllegalArgumentExceptionThrownWhenPassingNullOfferWhenRegisteringOffer() {
+        // given
+        exception.expect(IllegalArgumentException.class);
+        Offers offers = new Offers();
+
+        // when
+        offers.registerOffer(new Item("A", BigDecimal.ONE), null);
+
+        // then
+        // exception is thrown
+    }
 
     @Test
     public void givenAnOfferIsRegisteredCheckItCanBeRetrievedBySku() {
