@@ -6,7 +6,7 @@ This repository contains code implementing a representation of a supermarket che
 Here is a small demo of the API:
 ```
 // Create some items for the store:
-Item cod = new Item(/* SKU */ "123", /* price */ BigDecimal.valueOf(0.5));
+Item cod = new Item(/* SKU: */ "123", /* Price: */ BigDecimal.valueOf(0.5));
 
 Item chips = new Item("456", BigDecimal.valueOf(0.3));
 
@@ -29,12 +29,12 @@ checkout.scanItem(cod);
 checkout.scanItem(chips);
 checkout.scanItem(peas);
 
-// Obtain the totals of the items
+// Obtain the total of the items
 Totals totals = checkout.calculateTotals();
 
 System.out.println(totals);
 
-// This outputs:
+// This outputs: Totals{subTotal=2.5, reductions=0.35, total=2.15}
 ```
 
 ## Run tests
