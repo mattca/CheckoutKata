@@ -39,7 +39,7 @@ System.out.println(totals);
 
 ## Run tests
 
-To run tests:
+To run tests, maven is required:
 ```
 mvn test
 ```
