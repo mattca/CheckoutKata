@@ -16,6 +16,9 @@ public class Item {
         if (sku == null || price == null) {
             throw new IllegalArgumentException("sku or price must not be null when creating an Item");
         }
+        if (price.compareTo(BigDecimal.ZERO) < 0) {
+            throw new IllegalArgumentException("Price of item cannot be negative!");
+        }
         this.sku = sku;
         this.price = price;
     }

@@ -13,7 +13,8 @@ public class Totals {
 
     private final BigDecimal total;
 
-    public Totals(BigDecimal subTotal, BigDecimal reductions) {
+    // package private
+    Totals(BigDecimal subTotal, BigDecimal reductions) {
         this.subTotal = subTotal;
         this.reductions = reductions;
         this.total = subTotal.subtract(reductions);

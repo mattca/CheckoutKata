@@ -34,4 +34,16 @@ public class ItemTest {
         // then
         // exception is thrown
     }
+
+    @Test
+    public void checkItemDoesNotHaveNegativePrice() {
+        // given
+        exception.expect(IllegalArgumentException.class);
+
+        // when
+        Item item = new Item("ABC", BigDecimal.valueOf(-1));
+
+        // then
+        // exception is thrown
+    }
 }
