@@ -12,7 +12,7 @@ public class ItemTest {
     public final ExpectedException exception = ExpectedException.none();
 
     @Test
-    public void checkIllegalArgumentExceptionThrownWhenPassingNullSkuConstructorA() {
+    public void checkIllegalArgumentExceptionThrownWhenPassingNullSkuToConstructor() {
         // given
         exception.expect(IllegalArgumentException.class);
 
@@ -20,10 +20,11 @@ public class ItemTest {
         Item item = new Item(null, BigDecimal.ONE);
 
         // then
+        // exception is thrown
     }
 
     @Test
-    public void checkIllegalArgumentExceptionThrownWhenPassingNullPriceConstructorA() {
+    public void checkIllegalArgumentExceptionThrownWhenPassingNullPriceToConstructor() {
         // given
         exception.expect(IllegalArgumentException.class);
 
@@ -31,5 +32,6 @@ public class ItemTest {
         Item item = new Item("ABC", null);
 
         // then
+        // exception is thrown
     }
 }

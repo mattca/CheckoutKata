@@ -9,9 +9,6 @@ import static org.junit.Assert.assertTrue;
 
 public class CheckoutScanTest {
 
-    private static final MultibuyOffer BUY_TWO_GET_40_PC_OFF_THIRD_ITEM =
-            new MultibuyOffer(3, 40);
-
     private static final MultibuyOffer BUY_ONE_GET_SECOND_HALF_PRICE =
             new MultibuyOffer(3, 50);
 
