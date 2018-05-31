@@ -16,6 +16,9 @@ public class Item {
     }
 
     public Item(String sku, BigDecimal price, MultibuyOffer multibuyOffer) {
+        if (sku == null || price == null) {
+            throw new IllegalArgumentException("sku or price must not be null when creating an Item");
+        }
         this.sku = sku;
         this.price = price;
         this.multibuyOffer = multibuyOffer;
