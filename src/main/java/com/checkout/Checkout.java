@@ -63,12 +63,12 @@ public class Checkout {
             return BigDecimal.ZERO;
         }
 
-        Optional<MultibuyOffer> offerForItem = offers.getOfferForItemWithSku(item.getSku());
+        Optional<Offer> offerForItem = offers.getOfferForItemWithSku(item.getSku());
         if (!offerForItem.isPresent()) {
             return BigDecimal.ZERO;
         }
 
-        MultibuyOffer offer = offerForItem.get();
+        Offer offer = offerForItem.get();
         int itemsEligibleForDiscount = quantity / offer.getQuantityToEnableReduction();
         BigDecimal percentOffMultiplier = BigDecimal.valueOf((double) offer.getReducedItemPercentOff() / 100);
 

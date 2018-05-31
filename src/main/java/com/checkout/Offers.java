@@ -10,19 +10,19 @@ import java.util.Optional;
  */
 public class Offers {
 
-    private final Map<Item, MultibuyOffer> offers = new HashMap<>();
+    private final Map<Item, Offer> offers = new HashMap<>();
 
     /**
-     * Register that an item has a particular multibuy offer
+     * Register that an item has a particular offer
      *
-     * @param item          Item which has an offer
-     * @param multibuyOffer Offer to relate to the item
+     * @param item  Item which has an offer
+     * @param offer Offer to relate to the item
      */
-    public void registerOffer(Item item, MultibuyOffer multibuyOffer) {
-        if (item == null || multibuyOffer == null) {
-            throw new IllegalArgumentException("Item or Multibuy offer must not be null");
+    public void registerOffer(Item item, Offer offer) {
+        if (item == null || offer == null) {
+            throw new IllegalArgumentException("Item or offer must not be null");
         }
-        offers.put(item, multibuyOffer);
+        offers.put(item, offer);
     }
 
     /**
@@ -31,7 +31,7 @@ public class Offers {
      * @param sku Item SKU
      * @return Optional of the offer. Empty optional if no offer found for that SKU
      */
-    public Optional<MultibuyOffer> getOfferForItemWithSku(String sku) {
+    public Optional<Offer> getOfferForItemWithSku(String sku) {
         return offers
                 .entrySet()
                 .stream()

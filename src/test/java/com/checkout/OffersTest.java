@@ -10,11 +10,11 @@ import static org.junit.Assert.assertEquals;
 
 public class OffersTest {
 
-    private static final MultibuyOffer BUY_THREE_GET_40_PC_OFF_THIRD_ITEM =
-            new MultibuyOffer(3, 40);
+    private static final Offer BUY_THREE_GET_40_PC_OFF_THIRD_ITEM =
+            new Offer(3, 40);
 
-    private static final MultibuyOffer BUY_TWO_GET_SECOND_HALF_PRICE =
-            new MultibuyOffer(2, 50);
+    private static final Offer BUY_TWO_GET_SECOND_HALF_PRICE =
+            new Offer(2, 50);
 
     @Rule
     public final ExpectedException exception = ExpectedException.none();
@@ -26,7 +26,7 @@ public class OffersTest {
         Offers offers = new Offers();
 
         // when
-        offers.registerOffer(null, new MultibuyOffer(2, 50));
+        offers.registerOffer(null, new Offer(2, 50));
 
         // then
         // exception is thrown

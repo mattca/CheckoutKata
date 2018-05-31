@@ -8,11 +8,11 @@ import static org.junit.Assert.assertEquals;
 
 public class CheckoutTest {
 
-    private static final MultibuyOffer BUY_THREE_GET_40_PC_OFF_THIRD_ITEM =
-            new MultibuyOffer(3, 40);
+    private static final Offer BUY_THREE_GET_40_PC_OFF_THIRD_ITEM =
+            new Offer(3, 40);
 
-    private static final MultibuyOffer BUY_TWO_GET_SECOND_HALF_PRICE =
-            new MultibuyOffer(2, 50);
+    private static final Offer BUY_TWO_GET_SECOND_HALF_PRICE =
+            new Offer(2, 50);
 
     private static final int IS_EQUAL = 0; // Used for BigDecimal compareTo method
 

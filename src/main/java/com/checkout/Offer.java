@@ -3,15 +3,15 @@ package com.checkout;
 import java.util.Objects;
 
 /**
- * Class to represent a multi-buy offer, for example, buy one item, get second item half price
+ * Class to represent an offer, for example, buy one item, get second item half price
  */
-public class MultibuyOffer {
+public class Offer {
 
     private final int quantityToEnableReduction;
 
     private final int reducedItemPercentOff;
 
-    public MultibuyOffer(int quantityToEnableReduction, int reducedItemPercentOff) {
+    public Offer(int quantityToEnableReduction, int reducedItemPercentOff) {
         this.quantityToEnableReduction = quantityToEnableReduction;
         this.reducedItemPercentOff = reducedItemPercentOff;
     }
@@ -28,7 +28,7 @@ public class MultibuyOffer {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        MultibuyOffer that = (MultibuyOffer) o;
+        Offer that = (Offer) o;
         return quantityToEnableReduction == that.quantityToEnableReduction &&
                 reducedItemPercentOff == that.reducedItemPercentOff;
     }
