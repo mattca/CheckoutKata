@@ -12,9 +12,7 @@ public class Item {
     private final MultibuyOffer multibuyOffer;
 
     public Item(String sku, BigDecimal price) {
-        this.sku = sku;
-        this.price = price;
-        this.multibuyOffer = null;
+        this(sku, price, null);
     }
 
     public Item(String sku, BigDecimal price, MultibuyOffer multibuyOffer) {
