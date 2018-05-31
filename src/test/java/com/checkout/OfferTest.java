@@ -36,12 +36,12 @@ public class OfferTest {
     }
 
     @Test
-    public void checkIllegalArgumentExceptionThrownWhenPassingNegativeReducedItemPercentOff() {
+    public void checkIllegalArgumentExceptionThrownWhenPassingZeroReducedItemPercentOff() {
         // given
         exception.expect(IllegalArgumentException.class);
 
         // when
-        Offer offer = new Offer(1, -1);
+        Offer offer = new Offer(1, 0);
 
         // then
         // exception is thrown
@@ -53,7 +53,19 @@ public class OfferTest {
         exception.expect(IllegalArgumentException.class);
 
         // when
-        Offer offer = new Offer(1, 101);
+        Offer offer = new Offer(2, 101);
+
+        // then
+        // exception is thrown
+    }
+
+    @Test
+    public void checkIllegalArgumentExceptionThrownIfOfferParametersDescribeASingleFreeItem() {
+        // given
+        exception.expect(IllegalArgumentException.class);
+
+        // when
+        Offer offer = new Offer(1, 100);
 
         // then
         // exception is thrown

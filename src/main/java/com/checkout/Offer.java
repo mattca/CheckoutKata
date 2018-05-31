@@ -15,6 +15,12 @@ public class Offer {
         if (quantityToEnableReduction < 1) {
             throw new IllegalArgumentException("Quantity to enable reduction value must be 1 or above");
         }
+        if (reducedItemPercentOff < 1 || reducedItemPercentOff > 100) {
+            throw new IllegalArgumentException("Reduced item percent off should be between 1 and 100");
+        }
+        if (quantityToEnableReduction == 1 && reducedItemPercentOff == 100) {
+            throw new IllegalArgumentException("Offer can not be initialised to describe free items!");
+        }
         this.quantityToEnableReduction = quantityToEnableReduction;
         this.reducedItemPercentOff = reducedItemPercentOff;
     }
