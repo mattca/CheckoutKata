@@ -18,8 +18,8 @@ public class CheckoutScanTest {
     @Test
     public void scanItemShouldAddToCheckoutItems() {
         // given
-        Checkout checkout = new Checkout();
         Item item = new Item("C", BigDecimal.valueOf(0.2));
+        Checkout checkout = new Checkout();
 
         // when
         checkout.scanItem(item);
@@ -52,7 +52,10 @@ public class CheckoutScanTest {
         // given
         Checkout checkout = new Checkout();
         Item itemC = new Item("C", BigDecimal.valueOf(0.2));
-        Item itemB = new Item("B", BigDecimal.valueOf(0.3), BUY_ONE_GET_SECOND_HALF_PRICE);
+        Item itemB = new Item("B", BigDecimal.valueOf(0.3));
+
+        Offers offers = new Offers();
+        offers.registerOffer(itemB, BUY_ONE_GET_SECOND_HALF_PRICE);
 
         // when
         checkout.scanItem(itemC);

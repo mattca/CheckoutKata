@@ -1,5 +1,7 @@
 package com.itv;
 
+import java.util.Objects;
+
 public class MultibuyOffer {
 
     private final int quantityToEnableReduction;
@@ -17,5 +19,20 @@ public class MultibuyOffer {
 
     public int getReducedItemPercentOff() {
         return reducedItemPercentOff;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        MultibuyOffer that = (MultibuyOffer) o;
+        return quantityToEnableReduction == that.quantityToEnableReduction &&
+                reducedItemPercentOff == that.reducedItemPercentOff;
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(quantityToEnableReduction, reducedItemPercentOff);
     }
 }

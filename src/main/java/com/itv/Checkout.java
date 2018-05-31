@@ -4,11 +4,22 @@ import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Optional;
 
 public class Checkout {
 
+    private final Offers offers;
+
     // Map to represent items to checkout. Item -> Quantity of Item
     private Map<Item, Integer> checkoutItems = new HashMap<>();
+
+    public Checkout() {
+        this.offers = null;
+    }
+
+    public Checkout(Offers offers) {
+        this.offers = offers;
+    }
 
     public void scanItem(Item item) {
         checkoutItems.merge(item, 1, (a, b) -> a + b);
@@ -26,21 +37,30 @@ public class Checkout {
             Item item = itemAndQuantity.getKey();
             int quantity = itemAndQuantity.getValue();
 
-            int itemsEligibleForDiscount = 0;
-            BigDecimal percentOffMultiplier = BigDecimal.ONE;
-            if (item.getMultibuyOffer() != null) {
-                itemsEligibleForDiscount = quantity / item.getMultibuyOffer().getQuantityToEnableReduction();
-                percentOffMultiplier = BigDecimal.valueOf((double) item.getMultibuyOffer().getReducedItemPercentOff() / 100);
-            }
-
             subTotal = subTotal.add(item.getPrice().multiply(new BigDecimal(quantity)));
-            reductions = reductions.add(
-                    item.getPrice()
-                            .multiply(percentOffMultiplier)
-                            .multiply(BigDecimal.valueOf(itemsEligibleForDiscount)));
+            reductions = reductions.add(calculateReductionsForItemWithQuantity(item, quantity));
         }
 
         return new Totals(subTotal, reductions);
+    }
+
+    private BigDecimal calculateReductionsForItemWithQuantity(Item item, int quantity) {
+        if (offers == null) {
+            return BigDecimal.ZERO;
+        }
+
+        Optional<MultibuyOffer> offerForItem = offers.getOfferForItemWithSku(item.getSku());
+        if (!offerForItem.isPresent()) {
+            return BigDecimal.ZERO;
+        }
+
+        MultibuyOffer offer = offerForItem.get();
+        int itemsEligibleForDiscount = quantity / offer.getQuantityToEnableReduction();
+        BigDecimal percentOffMultiplier = BigDecimal.valueOf((double) offer.getReducedItemPercentOff() / 100);
+
+        return item.getPrice()
+                .multiply(percentOffMultiplier)
+                .multiply(BigDecimal.valueOf(itemsEligibleForDiscount));
     }
 
     public int getTotalItemsInCheckout() {

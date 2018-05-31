@@ -19,8 +19,12 @@ public class CheckoutTest {
     @Test
     public void testCheckoutTotalsWithSingleItemNoReductionsApply() {
         // given
-        Checkout checkout = new Checkout();
-        Item item = new Item("A", BigDecimal.valueOf(0.5), BUY_TWO_GET_40_PC_OFF_THIRD_ITEM);
+        Item item = new Item("A", BigDecimal.valueOf(0.5));
+
+        Offers offers = new Offers();
+        offers.registerOffer(item, BUY_TWO_GET_40_PC_OFF_THIRD_ITEM);
+
+        Checkout checkout = new Checkout(offers);
 
         // when
         checkout.scanItem(item);
@@ -50,8 +54,8 @@ public class CheckoutTest {
     public void testCheckoutTotalsWithMultipleItemsNoReductions() {
         // given
         Checkout checkout = new Checkout();
-        Item itemC = new Item("C", BigDecimal.valueOf(0.2), null);
-        Item itemD = new Item("D", BigDecimal.valueOf(0.15), null);
+        Item itemC = new Item("C", BigDecimal.valueOf(0.2));
+        Item itemD = new Item("D", BigDecimal.valueOf(0.15));
 
         // when
         checkout.scanItem(itemC);
@@ -67,8 +71,12 @@ public class CheckoutTest {
     @Test
     public void testCheckoutTotalsWithAnItemWithReductions() {
         // given
-        Checkout checkout = new Checkout();
-        Item itemB = new Item("B", BigDecimal.valueOf(0.3), BUY_ONE_GET_SECOND_HALF_PRICE);
+        Item itemB = new Item("B", BigDecimal.valueOf(0.3));
+
+        Offers offers = new Offers();
+        offers.registerOffer(itemB, BUY_ONE_GET_SECOND_HALF_PRICE);
+
+        Checkout checkout = new Checkout(offers);
 
         // when
         checkout.scanItem(itemB);
@@ -85,9 +93,14 @@ public class CheckoutTest {
     @Test
     public void testCheckoutTotalsWithAnItemWithReductionsAndAnItemWhereReductionDidntApply() {
         // given
-        Checkout checkout = new Checkout();
-        Item itemA = new Item("A", BigDecimal.valueOf(0.5), BUY_TWO_GET_40_PC_OFF_THIRD_ITEM);
-        Item itemB = new Item("B", BigDecimal.valueOf(0.3), BUY_ONE_GET_SECOND_HALF_PRICE);
+        Item itemA = new Item("A", BigDecimal.valueOf(0.5));
+        Item itemB = new Item("B", BigDecimal.valueOf(0.3));
+
+        Offers offers = new Offers();
+        offers.registerOffer(itemA, BUY_TWO_GET_40_PC_OFF_THIRD_ITEM);
+        offers.registerOffer(itemB, BUY_ONE_GET_SECOND_HALF_PRICE);
+
+        Checkout checkout = new Checkout(offers);
 
         // when
         checkout.scanItem(itemB);
@@ -104,8 +117,12 @@ public class CheckoutTest {
     @Test
     public void testCheckoutTotalsWhereMultipleReductionsApplyForASingleItemType() {
         // given
-        Checkout checkout = new Checkout();
-        Item itemB = new Item("B", BigDecimal.valueOf(0.3), BUY_ONE_GET_SECOND_HALF_PRICE);
+        Item itemB = new Item("B", BigDecimal.valueOf(0.3));
+
+        Offers offers = new Offers();
+        offers.registerOffer(itemB, BUY_ONE_GET_SECOND_HALF_PRICE);
+
+        Checkout checkout = new Checkout(offers);
 
         // when
         checkout.scanItem(itemB);
@@ -125,11 +142,16 @@ public class CheckoutTest {
     @Test
     public void testCheckoutTotalsComplexBasketCheck() {
         // given
-        Checkout checkout = new Checkout();
-        Item itemA = new Item("A", BigDecimal.valueOf(0.5), BUY_TWO_GET_40_PC_OFF_THIRD_ITEM);
-        Item itemB = new Item("B", BigDecimal.valueOf(0.3), BUY_ONE_GET_SECOND_HALF_PRICE);
-        Item itemC = new Item("C", BigDecimal.valueOf(0.2), null);
-        Item itemD = new Item("D", BigDecimal.valueOf(0.15), null);
+        Item itemA = new Item("A", BigDecimal.valueOf(0.5));
+        Item itemB = new Item("B", BigDecimal.valueOf(0.3));
+        Item itemC = new Item("C", BigDecimal.valueOf(0.2));
+        Item itemD = new Item("D", BigDecimal.valueOf(0.15));
+
+        Offers offers = new Offers();
+        offers.registerOffer(itemA, BUY_TWO_GET_40_PC_OFF_THIRD_ITEM);
+        offers.registerOffer(itemB, BUY_ONE_GET_SECOND_HALF_PRICE);
+
+        Checkout checkout = new Checkout(offers);
 
         // when
         checkout.scanItem(itemB);

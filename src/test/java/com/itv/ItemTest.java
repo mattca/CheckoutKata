@@ -32,26 +32,4 @@ public class ItemTest {
 
         // then
     }
-
-    @Test
-    public void checkIllegalArgumentExceptionThrownWhenPassingNullSkuConstructorB() {
-        // given
-        exception.expect(IllegalArgumentException.class);
-
-        // when
-        Item item = new Item(null, BigDecimal.ONE, new MultibuyOffer(1, 1));
-
-        // then
-    }
-
-    @Test
-    public void checkIllegalArgumentExceptionThrownWhenPassingNullPriceConstructorB() {
-        // given
-        exception.expect(IllegalArgumentException.class);
-
-        // when
-        Item item = new Item("ABC", null, new MultibuyOffer(1, 1));
-
-        // then
-    }
 }

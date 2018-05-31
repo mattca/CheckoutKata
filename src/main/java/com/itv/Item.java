@@ -9,19 +9,12 @@ public class Item {
 
     private final BigDecimal price;
 
-    private final MultibuyOffer multibuyOffer;
-
     public Item(String sku, BigDecimal price) {
-        this(sku, price, null);
-    }
-
-    public Item(String sku, BigDecimal price, MultibuyOffer multibuyOffer) {
         if (sku == null || price == null) {
             throw new IllegalArgumentException("sku or price must not be null when creating an Item");
         }
         this.sku = sku;
         this.price = price;
-        this.multibuyOffer = multibuyOffer;
     }
 
     public String getSku() {
@@ -30,10 +23,6 @@ public class Item {
 
     public BigDecimal getPrice() {
         return price;
-    }
-
-    public MultibuyOffer getMultibuyOffer() {
-        return multibuyOffer;
     }
 
     // Identity based on sku
@@ -59,7 +48,6 @@ public class Item {
         return "Item{" +
                 "sku='" + sku + '\'' +
                 ", price=" + price +
-                ", multibuyOffer=" + multibuyOffer +
                 '}';
     }
 }
