@@ -15,7 +15,7 @@ Item chips = new Item("456", BigDecimal.valueOf(0.3));
 
 Item peas = new Item("789", BigDecimal.valueOf(0.2));
 
-// Register the offers for those items using the MultiBuyOffers created:
+// Create some offer types
 MultibuyOffer buyOneGetSecondHalfPrice = new MultibuyOffer(
    2,  // <-- Buy N items, to enable a reduction on the Nth item
    50  // <-- Percent reduction applied on the Nth item
@@ -23,6 +23,7 @@ MultibuyOffer buyOneGetSecondHalfPrice = new MultibuyOffer(
 
 MultibuyOffer buyTwoGet40PercentOffThirdItem = new MultibuyOffer(3, 40);
 
+// Register the offers for certain items using the MultibuyOffers created:
 Offers offers = new Offers();
 offers.registerOffer(chips, buyOneGetSecondHalfPrice);
 offers.registerOffer(cod, buyTwoGet40PercentOffThirdItem);
