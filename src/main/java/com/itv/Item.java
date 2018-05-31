@@ -3,6 +3,9 @@ package com.itv;
 import java.math.BigDecimal;
 import java.util.Objects;
 
+/**
+ * Basic class to represent an item or product
+ */
 public class Item {
 
     private final String sku;

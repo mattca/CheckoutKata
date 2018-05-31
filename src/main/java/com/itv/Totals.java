@@ -2,6 +2,9 @@ package com.itv;
 
 import java.math.BigDecimal;
 
+/**
+ * Class to represent totals at the checkout
+ */
 public class Totals {
 
     private final BigDecimal subTotal;

@@ -27,7 +27,7 @@ public class CheckoutScanTest {
         // then
         assertTrue(checkout.getCheckoutItems().containsKey(item));
         assertEquals(1, checkout.getCheckoutItems().size());
-        assertEquals(1, checkout.getTotalItemsInCheckout());
+        assertEquals(1, checkout.getTotalNumberOfItemsInCheckout());
     }
 
     @Test
@@ -44,7 +44,7 @@ public class CheckoutScanTest {
         assertTrue(checkout.getCheckoutItems().containsKey(item));
         assertEquals(Integer.valueOf(2), checkout.getCheckoutItems().get(item));
         assertEquals(1, checkout.getCheckoutItems().size());
-        assertEquals(2, checkout.getTotalItemsInCheckout());
+        assertEquals(2, checkout.getTotalNumberOfItemsInCheckout());
     }
 
     @Test
@@ -69,6 +69,6 @@ public class CheckoutScanTest {
         assertEquals(Integer.valueOf(2), checkout.getCheckoutItems().get(itemC));
         assertEquals(Integer.valueOf(2), checkout.getCheckoutItems().get(itemB));
         assertEquals(2, checkout.getCheckoutItems().size());
-        assertEquals(4, checkout.getTotalItemsInCheckout());
+        assertEquals(4, checkout.getTotalNumberOfItemsInCheckout());
     }
 }

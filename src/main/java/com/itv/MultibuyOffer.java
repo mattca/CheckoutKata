@@ -2,6 +2,9 @@ package com.itv;
 
 import java.util.Objects;
 
+/**
+ * Class to represent a multi-buy offer, for example, buy one item, get second item half price
+ */
 public class MultibuyOffer {
 
     private final int quantityToEnableReduction;
@@ -32,7 +35,6 @@ public class MultibuyOffer {
 
     @Override
     public int hashCode() {
-
         return Objects.hash(quantityToEnableReduction, reducedItemPercentOff);
     }
 }

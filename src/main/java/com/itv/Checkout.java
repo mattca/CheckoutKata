@@ -6,11 +6,13 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Optional;
 
+/**
+ * Class which encapsulates the concept of a checkout
+ */
 public class Checkout {
 
     private final Offers offers;
 
-    // Map to represent items to checkout. Item -> Quantity of Item
     private Map<Item, Integer> checkoutItems = new HashMap<>();
 
     public Checkout() {
@@ -21,14 +23,26 @@ public class Checkout {
         this.offers = offers;
     }
 
+    /**
+     * Scan an item at the checkout
+     * @param item
+     */
     public void scanItem(Item item) {
         checkoutItems.merge(item, 1, (a, b) -> a + b);
     }
 
+    /**
+     * Retrieves checkout items
+     * @return A map where the key is the item, and the value is the quantity of the item
+     */
     public Map<Item, Integer> getCheckoutItems() {
         return checkoutItems;
     }
 
+    /**
+     * Calculates the totals of the items scanned through the checkout
+     * @return Totals object representing subtotal, reductions, total
+     */
     public Totals calculateTotals() {
         BigDecimal reductions = BigDecimal.ZERO;
         BigDecimal subTotal = BigDecimal.ZERO;
@@ -63,7 +77,11 @@ public class Checkout {
                 .multiply(BigDecimal.valueOf(itemsEligibleForDiscount));
     }
 
-    public int getTotalItemsInCheckout() {
+    /**
+     * Returns a count of the total number of items in the checkout
+     * @return
+     */
+    public int getTotalNumberOfItemsInCheckout() {
         return checkoutItems
                 .values()
                 .stream()
