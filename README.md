@@ -47,7 +47,7 @@ System.out.println(totals);
 // This outputs: Totals{subTotal=2.5, reductions=0.35, total=2.15}
 ```
 
-## Run tests
+## Tests
 
 To run tests, maven is required:
 ```
