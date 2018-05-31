@@ -30,4 +30,13 @@ public class Totals {
     public BigDecimal getTotal() {
         return total;
     }
+
+    @Override
+    public String toString() {
+        return "Totals{" +
+                "subTotal=" + subTotal +
+                ", reductions=" + reductions +
+                ", total=" + total +
+                '}';
+    }
 }
