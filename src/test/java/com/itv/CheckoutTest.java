@@ -100,4 +100,58 @@ public class CheckoutTest {
         assertEquals(IS_EQUAL, BigDecimal.valueOf(1.10).compareTo(totals.getSubTotal()));
         assertEquals(IS_EQUAL, BigDecimal.valueOf(0.95).compareTo(totals.getTotal()));
     }
+
+    @Test
+    public void testCheckoutTotalsWhereMultipleReductionsApplyForASingleItemType() {
+        // given
+        Checkout checkout = new Checkout();
+        Item itemB = new Item("B", BigDecimal.valueOf(0.3), BUY_ONE_GET_SECOND_HALF_PRICE);
+
+        // when
+        checkout.scanItem(itemB);
+        checkout.scanItem(itemB);
+        checkout.scanItem(itemB);
+        checkout.scanItem(itemB);
+        checkout.scanItem(itemB);
+        checkout.scanItem(itemB);
+        Totals totals = checkout.calculateTotals();
+
+        // then
+        assertEquals(IS_EQUAL, BigDecimal.valueOf(0.45).compareTo(totals.getReductions()));
+        assertEquals(IS_EQUAL, BigDecimal.valueOf(1.80).compareTo(totals.getSubTotal()));
+        assertEquals(IS_EQUAL, BigDecimal.valueOf(1.35).compareTo(totals.getTotal()));
+    }
+
+    @Test
+    public void testCheckoutTotalsComplexBasketCheck() {
+        // given
+        Checkout checkout = new Checkout();
+        Item itemA = new Item("A", BigDecimal.valueOf(0.5), BUY_TWO_GET_40_PC_OFF_THIRD_ITEM);
+        Item itemB = new Item("B", BigDecimal.valueOf(0.3), BUY_ONE_GET_SECOND_HALF_PRICE);
+        Item itemC = new Item("C", BigDecimal.valueOf(0.2), null);
+        Item itemD = new Item("D", BigDecimal.valueOf(0.15), null);
+
+        // when
+        checkout.scanItem(itemB);
+        checkout.scanItem(itemA);
+        checkout.scanItem(itemB);
+        checkout.scanItem(itemA);
+        checkout.scanItem(itemB);
+        checkout.scanItem(itemA);
+        checkout.scanItem(itemD);
+        checkout.scanItem(itemB);
+        checkout.scanItem(itemB);
+        checkout.scanItem(itemC);
+        checkout.scanItem(itemB);
+        checkout.scanItem(itemD);
+        checkout.scanItem(itemB);
+        checkout.scanItem(itemC);
+        checkout.scanItem(itemC);
+        Totals totals = checkout.calculateTotals();
+
+        // then
+        assertEquals(IS_EQUAL, BigDecimal.valueOf(0.65).compareTo(totals.getReductions()));
+        assertEquals(IS_EQUAL, BigDecimal.valueOf(4.50).compareTo(totals.getSubTotal()));
+        assertEquals(IS_EQUAL, BigDecimal.valueOf(3.85).compareTo(totals.getTotal()));
+    }
 }
