@@ -12,6 +12,9 @@ public class Offer {
     private final int reducedItemPercentOff;
 
     public Offer(int quantityToEnableReduction, int reducedItemPercentOff) {
+        if (quantityToEnableReduction < 1) {
+            throw new IllegalArgumentException("Quantity to enable reduction value must be 1 or above");
+        }
         this.quantityToEnableReduction = quantityToEnableReduction;
         this.reducedItemPercentOff = reducedItemPercentOff;
     }
