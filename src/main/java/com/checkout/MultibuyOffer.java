@@ -1,4 +1,4 @@
-package com.itv;
+package com.checkout;
 
 import java.util.Objects;
 
