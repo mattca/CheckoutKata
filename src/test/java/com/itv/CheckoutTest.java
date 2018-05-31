@@ -8,10 +8,10 @@ import static org.junit.Assert.assertEquals;
 
 public class CheckoutTest {
 
-    private static final MultibuyOffer BUY_TWO_GET_40_PC_OFF_THIRD_ITEM =
+    private static final MultibuyOffer BUY_THREE_GET_40_PC_OFF_THIRD_ITEM =
             new MultibuyOffer(3, 40);
 
-    private static final MultibuyOffer BUY_ONE_GET_SECOND_HALF_PRICE =
+    private static final MultibuyOffer BUY_TWO_GET_SECOND_HALF_PRICE =
             new MultibuyOffer(2, 50);
 
     private static final int IS_EQUAL = 0; // Used for BigDecimal compareTo method
@@ -22,7 +22,7 @@ public class CheckoutTest {
         Item item = new Item("A", BigDecimal.valueOf(0.5));
 
         Offers offers = new Offers();
-        offers.registerOffer(item, BUY_TWO_GET_40_PC_OFF_THIRD_ITEM);
+        offers.registerOffer(item, BUY_THREE_GET_40_PC_OFF_THIRD_ITEM);
 
         Checkout checkout = new Checkout(offers);
 
@@ -74,7 +74,7 @@ public class CheckoutTest {
         Item itemB = new Item("B", BigDecimal.valueOf(0.3));
 
         Offers offers = new Offers();
-        offers.registerOffer(itemB, BUY_ONE_GET_SECOND_HALF_PRICE);
+        offers.registerOffer(itemB, BUY_TWO_GET_SECOND_HALF_PRICE);
 
         Checkout checkout = new Checkout(offers);
 
@@ -97,8 +97,8 @@ public class CheckoutTest {
         Item itemB = new Item("B", BigDecimal.valueOf(0.3));
 
         Offers offers = new Offers();
-        offers.registerOffer(itemA, BUY_TWO_GET_40_PC_OFF_THIRD_ITEM);
-        offers.registerOffer(itemB, BUY_ONE_GET_SECOND_HALF_PRICE);
+        offers.registerOffer(itemA, BUY_THREE_GET_40_PC_OFF_THIRD_ITEM);
+        offers.registerOffer(itemB, BUY_TWO_GET_SECOND_HALF_PRICE);
 
         Checkout checkout = new Checkout(offers);
 
@@ -120,7 +120,7 @@ public class CheckoutTest {
         Item itemB = new Item("B", BigDecimal.valueOf(0.3));
 
         Offers offers = new Offers();
-        offers.registerOffer(itemB, BUY_ONE_GET_SECOND_HALF_PRICE);
+        offers.registerOffer(itemB, BUY_TWO_GET_SECOND_HALF_PRICE);
 
         Checkout checkout = new Checkout(offers);
 
@@ -148,8 +148,8 @@ public class CheckoutTest {
         Item itemD = new Item("D", BigDecimal.valueOf(0.15));
 
         Offers offers = new Offers();
-        offers.registerOffer(itemA, BUY_TWO_GET_40_PC_OFF_THIRD_ITEM);
-        offers.registerOffer(itemB, BUY_ONE_GET_SECOND_HALF_PRICE);
+        offers.registerOffer(itemA, BUY_THREE_GET_40_PC_OFF_THIRD_ITEM);
+        offers.registerOffer(itemB, BUY_TWO_GET_SECOND_HALF_PRICE);
 
         Checkout checkout = new Checkout(offers);
 

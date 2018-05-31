@@ -9,7 +9,7 @@ import static org.junit.Assert.assertTrue;
 
 public class CheckoutScanTest {
 
-    private static final MultibuyOffer BUY_ONE_GET_SECOND_HALF_PRICE =
+    private static final MultibuyOffer BUY_TWO_GET_SECOND_HALF_PRICE =
             new MultibuyOffer(3, 50);
 
     @Test
@@ -52,7 +52,7 @@ public class CheckoutScanTest {
         Item itemB = new Item("B", BigDecimal.valueOf(0.3));
 
         Offers offers = new Offers();
-        offers.registerOffer(itemB, BUY_ONE_GET_SECOND_HALF_PRICE);
+        offers.registerOffer(itemB, BUY_TWO_GET_SECOND_HALF_PRICE);
 
         // when
         checkout.scanItem(itemC);
